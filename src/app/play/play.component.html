@@ -1,0 +1,36 @@
+
+<div class="container-sm">
+  <div *ngIf="cats.length == 0" class="alert alert-success" role="alert">
+    Congrats, you finshed the game
+  </div>
+  <div *ngIf="cats && cats.length > 0" class="row radio-btns hover06">
+    <div class="col center-div color-1 h-auto ptb-3 radio-btns__btn">
+      <div *ngIf="firstCat">
+        <div class="curson-p figure" (click)="addScore(firstCat)">
+          <!-- <figure> -->
+            <img
+              class="rounded-circle img-fluid"
+              alt="cat"
+              [src]="firstCat.url"
+              data-holder-rendered="true"
+            />
+          <!-- </figure> -->
+        </div>
+      </div>
+    </div>
+    <div class="col center-div color-2 h-auto ptb-3 radio-btns__btn">
+      <div *ngIf="secondCat">
+        <div class="curson-p figure" (click)="addScore(secondCat)">
+          <!-- <figure> -->
+            <img
+              class="rounded-circle img-fluid"
+              alt="cat"
+              [src]="secondCat.url"
+              data-holder-rendered="true"
+            />
+          <!-- </figure> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

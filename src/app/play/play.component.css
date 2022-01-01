@@ -1,0 +1,51 @@
+.center-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-1 {
+    background-color: #ECF0F1;
+}
+.color-2 {
+    background-color: #F7F7F7;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+
+.ptb-3 {
+    padding: 5rem 0 !important;
+}
+
+.curson-p {
+    cursor: pointer;
+}
+
+.radio-btns:hover .radio-btns__btn:not(:hover) {
+    filter: grayscale(100%);
+}
+.radio-btns:hover .radio-btns__btn:not(:hover)::after {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hover06 .figure img {
+	-webkit-transform: rotate(15deg) scale(1.4);
+	transform: rotate(15deg) scale(1.4);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover06 .figure:hover img {
+	-webkit-transform: rotate(0) scale(1);
+	transform: rotate(0) scale(1);
+}
+
+@media only screen and (max-width: 900px) {
+    img {
+        width: 180px;
+        height: 180px;
+    }
+  }

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h3 class="display-4 mb-4">Cat Scores</h3>
+      <hr class="my-4" />
+    </div>
+    <div
+      *ngIf="this.processedCats.length <= 2"
+      class="alert alert-warning"
+      role="alert"
+    >
+      No scores available, you need to play first
+    </div>
+    <ng-container *ngIf="this.processedCats.length > 2">
+      <div
+        *ngFor="let cat of processedCats"
+        class="col-lg-3 col-md-4 col-sm-6 mb-4"
+      >
+        <div class="card">
+          <div>
+            <img [src]="cat.url" alt="img" class="img-fluid" />
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">Score : {{ cat.score }}</h2>
+            <span *ngIf="cat.isCutest" class="badge rounded-pill bg-warning"
+              >The cutest</span
+            >
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
