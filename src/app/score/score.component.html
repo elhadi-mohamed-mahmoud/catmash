@@ -13,7 +13,7 @@
     </div>
     <ng-container *ngIf="this.processedCats.length > 2">
       <div
-        *ngFor="let cat of processedCats"
+        *ngFor="let cat of processedCats; first as isFirst"
         class="col-lg-3 col-md-4 col-sm-6 mb-4"
       >
         <div class="card">
@@ -22,7 +22,7 @@
           </div>
           <div class="card-body">
             <h2 class="card-title">Score : {{ cat.score }}</h2>
-            <span *ngIf="cat.isCutest" class="badge rounded-pill bg-warning"
+            <span *ngIf="isFirst" class="badge rounded-pill bg-warning"
               >The cutest</span
             >
           </div>

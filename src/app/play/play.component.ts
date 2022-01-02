@@ -52,13 +52,21 @@ export class PlayComponent implements OnInit {
     let element = this.processedCats.find(
       (element) => element.id == selectedcat.id
     );
-    if (element) {
-      element.score = selectedcat.score + 1;
-    }
+
     if (selectedcat.id == this.firstCat.id) {
+      if (this.firstCat.score < this.secondCat.score) {
+        this.firstCat.score = this.secondCat.score + 1;
+      } else {
+        this.firstCat.score = this.firstCat.score + 1;
+      }
       this.displayNewElement(DISPLAYED_CAT.SECOND);
     }
     if (selectedcat.id == this.secondCat.id) {
+      if (this.secondCat.score < this.firstCat.score) {
+        this.secondCat.score = this.firstCat.score + 1;
+      } else {
+        this.secondCat.score = this.secondCat.score + 1;
+      }
       this.displayNewElement(DISPLAYED_CAT.FIRST);
     }
   }
