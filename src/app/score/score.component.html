@@ -5,13 +5,13 @@
       <hr class="my-4" />
     </div>
     <div
-      *ngIf="this.processedCats.length <= 2"
+      *ngIf="!this.processedCats || this.processedCats.length == 0"
       class="alert alert-warning"
       role="alert"
     >
       No scores available, you need to play first
     </div>
-    <ng-container *ngIf="this.processedCats.length > 2">
+    <ng-container *ngIf="this.processedCats">
       <div
         *ngFor="let cat of processedCats; first as isFirst"
         class="col-lg-3 col-md-4 col-sm-6 mb-4"

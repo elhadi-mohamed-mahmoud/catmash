@@ -12,13 +12,21 @@
 }
 
 img {
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 150px;
     background-size: cover;
 }
 
+.img-border-1{
+    border: #406882 5px solid;
+}
+
+.img-border-2{
+    border: #6998AB 5px solid;
+}
+
 .ptb-3 {
-    padding: 5rem 0 !important;
+    padding: 9rem 0 !important;
 }
 
 .curson-p {
@@ -40,7 +48,7 @@ img {
 }
 .hover-cat .figure:hover img {
 	-webkit-transform: rotate(0) scale(1);
-	transform: rotate(0) scale(1);
+	transform: rotate(0) scale(1.5);
 }
 
 @media only screen and (max-width: 900px) {

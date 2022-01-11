@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Cat } from './classes/Cat';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ export class AppComponent {
   wantToPlay: boolean = false;
   wantSeeScore: boolean = false;
   goHome: boolean = true;
+
+  constructor(private userService: UserService){}
 
   play() {
     this.wantToPlay = true;
@@ -30,5 +33,9 @@ export class AppComponent {
     this.wantSeeScore = false;
     this.wantToPlay = false;
     this.goHome = true;
+  }
+
+  loggedIn(){
+    return this.userService.isAuthenticated();
   }
 }

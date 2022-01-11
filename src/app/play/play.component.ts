@@ -9,9 +9,7 @@ import { CatServiceService } from '../services/cat-service.service';
   styleUrls: ['./play.component.css'],
 })
 export class PlayComponent implements OnInit {
-  @Input()
   cats: Cat[] = [];
-  @Input()
   processedCats: Cat[] = [];
   firstCat: Cat = new Cat();
   secondCat: Cat = new Cat();
@@ -24,10 +22,7 @@ export class PlayComponent implements OnInit {
 
   setListOfCats() {
     this.catServiceService.getCatlist().subscribe((data: any) => {
-      this.cats = <Cat[]>data.images;
-      this.cats.forEach((element) => {
-        element.score = 0;
-      });
+      this.cats = <Cat[]>data;
       this.displayNewElement(DISPLAYED_CAT.FIRST);
       this.displayNewElement(DISPLAYED_CAT.SECOND);
     });
@@ -48,27 +43,18 @@ export class PlayComponent implements OnInit {
     }
   }
 
-  addScore(selectedcat: Cat) {
-    let element = this.processedCats.find(
-      (element) => element.id == selectedcat.id
-    );
-
-    if (selectedcat.id == this.firstCat.id) {
-      if (this.firstCat.score < this.secondCat.score) {
-        this.firstCat.score = this.secondCat.score + 1;
-      } else {
-        this.firstCat.score = this.firstCat.score + 1;
-      }
-      this.displayNewElement(DISPLAYED_CAT.SECOND);
-    }
-    if (selectedcat.id == this.secondCat.id) {
-      if (this.secondCat.score < this.firstCat.score) {
-        this.secondCat.score = this.firstCat.score + 1;
-      } else {
-        this.secondCat.score = this.secondCat.score + 1;
-      }
-      this.displayNewElement(DISPLAYED_CAT.FIRST);
-    }
+  vote(cat: Cat) {
+    this.catServiceService.vote(cat).subscribe({
+      error: (e) => console.error(e),
+      complete: () => {
+        if (cat.id == this.firstCat.id) {
+          this.displayNewElement(DISPLAYED_CAT.SECOND);
+        }
+        if (cat.id == this.secondCat.id) {
+          this.displayNewElement(DISPLAYED_CAT.FIRST);
+        }
+      },
+    });
   }
 
   shuffle(cats: Cat[]) {
@@ -77,5 +63,9 @@ export class PlayComponent implements OnInit {
       [cats[i], cats[j]] = [cats[j], cats[i]];
     }
     return cats;
+  }
+
+  hasFinishedPlaying(): boolean {
+    return this.processedCats.length != 0 && this.cats.length == 0;
   }
 }

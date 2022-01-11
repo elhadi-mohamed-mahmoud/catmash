@@ -1,23 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-  <a class="navbar-brand" (click)="goHomePage()" href="#">CatMash</a>
-  <div class="collapse navbar-collapse d-flex justify-content-center flex-basis-auto">
+  <a class="navbar-brand" href="/home">CatMash</a>
+  <div *ngIf="loggedIn()" class="collapse navbar-collapse d-flex justify-content-center flex-basis-auto">
     <ul class="navbar-nav d-flex flex-row justify-content-center">
       <li class="nav-item bg-info mr-2 cursor-pointer">
-        <a class="nav-link text-white" (click)="play()" href="#">Play</a>
+        <a class="nav-link text-white" href="/play">Play</a>
       </li>
       <li class="nav-item bg-info mr-2 cursor-pointer">
-        <a class="nav-link text-white" (click)="seeScore()" href="#"
+        <a class="nav-link text-white" href="/score"
           >See score</a
         >
       </li>
     </ul>
   </div>
 </nav>
-
-<app-Home *ngIf="goHome"></app-Home>
-<app-play
-  [hidden]="!wantToPlay"
-  [cats]="cats"
-  [processedCats]="processedCats"
-></app-play>
-<app-score *ngIf="wantSeeScore" [processedCats]="processedCats"></app-score>
+<router-outlet></router-outlet>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Cat } from '../classes/Cat';
+import { CatServiceService } from '../services/cat-service.service';
 
 @Component({
   selector: 'app-score',
@@ -7,12 +8,17 @@ import { Cat } from '../classes/Cat';
   styleUrls: ['./score.component.css'],
 })
 export class ScoreComponent implements OnInit {
-  @Input()
   processedCats: Cat[] = [];
 
-  constructor() {}
+  constructor(private catService: CatServiceService) {}
 
   ngOnInit() {
-    this.processedCats.sort((a, b) => (a.score < b.score ? 1 : -1));
+    this.getScore();
+  }
+  getScore() {
+    this.catService.getScore().subscribe((data: any) => {
+      this.processedCats = <Cat[]>data;
+      this.processedCats.sort((a, b) => (a.score < b.score ? 1 : -1));
+    });
   }
 }
